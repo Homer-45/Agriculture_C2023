@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class FarmerController extends Controller
 {
    public function AllFarmer(){
-    
-        return view('farmer.index');
+      return view('farmer.index');
+   }
+   public function AddFarmer(){
+      return view('farmer.create');
    }
 }

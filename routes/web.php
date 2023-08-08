@@ -42,6 +42,7 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/add/livestock', [LivestockController::class, 'AddLivestock'])->name('add.livestock');
     // Farmer
     Route::get('/all/farmer', [FarmerController::class, 'AllFarmer'])->name('all.farmer');
+    Route::get('/add/farmer', [FarmerController::class, 'AddFarmer'])->name('add.farmer');
 
 
 }); //Admin Group middleware

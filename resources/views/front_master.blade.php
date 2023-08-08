@@ -100,14 +100,14 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('all.farmer') }}" class="nav-link
-                                    {{ Request::is('all/farmer')? 'active': '' }}">
+                                <a href="" class="nav-link">
                                     <i class="nav-icon fas fa-tractor"></i>
                                     <p>Farmer</p>
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="pages/layout/top-nav.html" class="nav-link ml-5">
+                                        <a href="{{ route('all.farmer') }}" class="nav-link ml-5
+                                        {{ Request::is('all/farmer')? 'active': '' }}">
                                             <p>List</p>
                                         </a>
                                     </li>

@@ -22,7 +22,7 @@
             <div class="card">
                 <div class="card-header bg-dark">
                     <h3 class="card-title mt-2">List</h3>
-                    <a href=""><button class="btn btn-success float-sm-right" style="float:right"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
+                    <a href="{{ route('add.farmer') }}"><button class="btn btn-success float-sm-right" style="float:right"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
                 </div>
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
