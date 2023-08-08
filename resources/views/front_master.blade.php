@@ -27,7 +27,6 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset ('plugins/summernote/summernote-bs4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css')}}">
-
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -43,47 +42,26 @@
        <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                <a class="nav-link text-white" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link"><strong>Home</strong></a>
+                <a href="/admin/dashboard" class="nav-link text-white"><strong>Home</strong></a>
             </li>
         </ul>
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
-            <!-- Navbar Search -->
-            <li class="nav-item">
-                <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                <i class="fas fa-search"></i>
-                </a>
-                <div class="navbar-search-block">
-                <form class="form-inline">
-                    <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                        </button>
-                        <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                        <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    </div>
-                </form>
-                </div>
-            </li>
             <li class="nav-item dropdown">
-            <a class="nav-link badge badge-light" data-toggle="dropdown" role="button">
-                <h5 class="text-dark mt-1"><b>{{ Auth::user()->name }} </b><i class="far fa-user"></i></h5> 
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
-                <div class="dropdown-divider"></div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a href="route('logout')" class="dropdown-item" onclick="event.preventDefault(); this.closest('form').submit();">Log out</a>
-                </form>
+                <a class="nav-link badge" data-toggle="dropdown" role="button">
+                    <h5 class="text-white p-2">{{ Auth::user()->name }} <i class="fas fa-user"></i></h5> 
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
+                    <div class="dropdown-divider"></div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="route('logout')" class="dropdown-item" onclick="event.preventDefault(); this.closest('form').submit();">Log out</a>
+                        </form>
+                    </div>
                 </div>
-            </div>
             </li>
         </ul>
     </nav>
@@ -115,16 +93,25 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="{{ route('all.livestock') }}" class="nav-link 
+                                    {{ Request::is('all/livestock')? 'active': '' }}">
                                     <i class="nav-icon fas fa-hippo"></i>
                                     <p>Livestock Information</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="{{ route('all.farmer') }}" class="nav-link
+                                    {{ Request::is('all/farmer')? 'active': '' }}">
                                     <i class="nav-icon fas fa-tractor"></i>
-                                    <p>Farmer Information</p>
+                                    <p>Farmer</p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="pages/layout/top-nav.html" class="nav-link ml-5">
+                                            <p>List</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a href="" class="nav-link">
