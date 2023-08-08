@@ -13,4 +13,5 @@ class FarmerController extends Controller
    public function AddFarmer(){
       return view('farmer.create');
    }
+    
 }
