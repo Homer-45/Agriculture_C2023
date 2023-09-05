@@ -15,16 +15,20 @@
             <div class="card">
                 <div class="card-header bg-dark d-flat">
                     <h3 class="card-title mt-2">List Livestock and Poultry</h3>
-                    <a href="{{ route('add.livestock') }}"><button class="btn btn-success float-sm-right" style="float:right"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
                 </div>
                 <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped" style="font-size: 14px;">
+                    <table id="example3" class="table table-bordered table-striped" style="font-size: 14px;">
                         <thead>
                             <tr>
-                                <th colspan="2" class="text-center border border-gray"> Chicken</th>
+                                <th colspan="4"></th>
+                                <th colspan="2" class="text-center">Swine</th>
+                                <th colspan="2"></th>
+                                <th colspan="3" class="text-center">Chicken</th>
+                                <th colspan="2" class="text-center">Ducks</th>
+                                <th colspan="6"></th>
                             </tr>
                             <tr>
-                                <th>#</th>
+                                <th width="1%">#</th>
                                 <th width="10%">Barangay</th>
 
 
@@ -34,48 +38,27 @@
                                 <th width="5%">Breeder</th>
                                 <th width="5%">Fattener</th>
 
-                                <th width="5%">Goat</th>
-                                <th width="5%">Sheep</th>
+                                <th width="4%">Goat</th>
+                                <th width="4%">Sheep</th>
                                 <!-- Chicken -->
-                                <th width="5%">Broiler</th>
-                                <th width="5%">Layer</th>
-                                <th width="5%">Native</th>
+                                <th width="4%">Broiler</th>
+                                <th width="4%">Layer</th>
+                                <th width="4%">Native</th>
                                 <!-- Ducks -->
                                 <th width="5%">Muscovy</th>
                                 <th width="5%">Mallard</th>
                                 
-                                <th width="5%">Turkey</th>
-                                <th width="5%">Geese</th>
-                                <th width="5%">Quail</th>
-                                <th width="5%">Dog</th>
-                                <th width="5%">Horse</th>
+                                <th width="4%">Turkey</th>
+                                <th width="4%">Geese</th>
+                                <th width="4%">Quail</th>
+                                <th width="4%">Dog</th>
+                                <th width="4%">Horse</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>X</td>
-                                <td>Internet Explorer 4.0</td>
-                                <td>Internet</td>
-                                <td>Win 95+</td>
-                                <td>4</td>
-                                <td>X</td>
-                                <td>Internet</td>
-                                <td>Win 95+</td>
-                                <td>4</td>
-                                <td>X</td>
-                                <td>Internet</td>
-                                <td>Win 95+</td>
-                                <td>4</td>
-                                <td>X</td>
-                                <td>Internet</td>
-                                <td>Win 95+</td>
-                                <td>4</td>
-                                <td>X</td>
-                                
-                            </tr>
-                            <tr>
-                                <td>X</td>
-                                <td>Internet Explorer 4.0</td>
+                                <td>Internet Explorer Explorer 4.0</td>
                                 <td>Internet</td>
                                 <td>Win 95+</td>
                                 <td>4</td>
@@ -95,20 +78,32 @@
                                 
                             </tr>
                         </tbody>
-                        <!-- <tfoot>
-                            <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
-                            </tr>
-                        </tfoot> -->
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- /.content -->
+@push('js')
+<script src="{{ asset ('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+<script>
+  $(function () {
+    $("#example3").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+
+@endpush
 @endsection

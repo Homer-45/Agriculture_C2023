@@ -13,6 +13,22 @@ return new class extends Migration
     {
         Schema::create('livestocks', function (Blueprint $table) {
             $table->id();
+            $table->integer('carabao')->nullable();
+            $table->integer('cattle')->nullable();
+            $table->integer('breeder')->nullable();
+            $table->integer('fattener')->nullable();
+            $table->integer('goat')->nullable();
+            $table->integer('sheep')->nullable();
+            $table->integer('broiler')->nullable();
+            $table->integer('layer')->nullable();
+            $table->integer('native')->nullable();
+            $table->integer('muscovy')->nullable();
+            $table->integer('mallard')->nullable();
+            $table->integer('turkey')->nullable();
+            $table->integer('geese')->nullable();
+            $table->integer('quail')->nullable();
+            $table->integer('dog')->nullable();
+            $table->integer('horse')->nullable();
             $table->timestamps();
         });
     }

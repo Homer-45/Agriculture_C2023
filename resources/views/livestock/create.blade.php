@@ -45,9 +45,9 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label>Extension Name:</label>
-                            <input type="text" class="form-control col-md-5" name="last_name" onkeydown="return /[a-z ]/i.test(event.key)" required>
+                            <input type="text" class="form-control" name="last_name" onkeydown="return /[a-z ]/i.test(event.key)" required>
                         </div>
-                        <div class="form-group col-md-1">
+                        <div class="form-group col-md-2">
                             <label class="">Sex:</label>
                             <div class="row mt-2">
                                 <div class="form-check ml-5">

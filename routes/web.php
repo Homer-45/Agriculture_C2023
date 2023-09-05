@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\LivestockController;
 use App\Http\Controllers\FarmerController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,8 @@ Route::middleware(['auth', 'role:agent'])->group(function(){
     Route::get('/agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
 
 }); //Agent Group middleware
+
+Route::get('/account', [SettingController::class, 'Account'])->name('account');
+Route::get('/calendar', [SettingController::class, 'Calendar'])->name('calendar');
+// User or Barangay
+Route::post('/submit-form', [LivestockController::class, 'Submit'])->name('submit-form');
