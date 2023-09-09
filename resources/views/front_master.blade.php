@@ -91,7 +91,12 @@
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+                            <li class="nav-item">
+                                <a href="{{ route('all.farmer') }}" class="nav-link {{ Request::is('all/farmer')? 'active': '' }}">
+                                    <i class="nav-icon fas fa-tractor"></i>
+                                    <p>Farmer</p>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a href="" class="nav-link">
                                     <i class="nav-icon fas fa-hippo"></i>
@@ -106,25 +111,17 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="nav-icon fas fa-tractor"></i>
-                                    <p>Farmer</p>
+                                <a href="{{ route('all.crop') }}" class="nav-link {{ Request::is('all/crop')? 'active': '' }}">
+                                    <i class="nav-icon fas fa-seedling"></i>
+                                    <p>Crops</p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('all.farmer') }}" class="nav-link ml-4
-                                        {{ Request::is('all/farmer')? 'active': '' }}">
-                                            <p>List</p>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <!-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a href=" {{ route('calendar') }}" class="nav-link {{ Request::is('/calendar')? 'active': '' }}">
                                     <i class="nav-icon far fa-calendar-alt"></i>
                                     <p>Calendar</p>
                                 </a>
-                            </li> -->
+                            </li>
                             <li class="nav-item">
                                 <a href="" class="nav-link">
                                     <i class="nav-icon fas fa-cog"></i>

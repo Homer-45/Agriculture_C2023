@@ -37,18 +37,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($farmers as $farmer)
                             <tr>
-                                <td>Trident</td>
-                                <td>Internet Explorer 4.0</td>
-                                <td>Win 95+</td>
-                                <td>Win 95+</td>
-                                <td>4</td>
+                                <td>{{$farmer->first_name}} {{$farmer->middle_name}} {{$farmer->last_name}}</td>
+                                <td>{{$farmer->reference_number}}</td>
+                                <td>{{$farmer->barangay}}</td>
+                                <td>{{$farmer->mobile}}</td>
+                                <td>{{$farmer->date_birth}}</td>
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm"><i class="fa fa-print"></i> Print</button>
                                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Archive</button>
                                     <button type="button" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> View</button>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                         <!-- <tfoot>
                             <tr>

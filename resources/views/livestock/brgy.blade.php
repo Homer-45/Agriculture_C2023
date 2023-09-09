@@ -32,7 +32,6 @@
                                 <th colspan="6"></th>
                             </tr>
                             <tr>
-                                <th width="1%">#</th>
                                 <th width="11%">Barangay</th>
 
 
@@ -63,8 +62,7 @@
                             @php($i = 1)
                             @foreach($livestocks as $livestock)
                             <tr>
-                                <td scope="row">{{ $i++ }}</td>
-                                <td></td>
+                                <td>{{ $i++ }}. {{ $livestock->id }}</td>
                                 <td>{{$livestock->carabao}}</td>
                                 <td>{{$livestock->cattle}}</td>
                                 <td>{{$livestock->breeder}}</td>
@@ -205,6 +203,7 @@
     $(document).ready(function () {
         var modal = $("#survey-modal");
         var form = $("#createLivestock");
+        
 
         // Open modal
         $("#openModalBtn").click(function () {
@@ -221,7 +220,7 @@
                     $("#responseMessage").text(response.message);                    
                     form.get(0).reset();
                     modal.find('.close').trigger('click');
-                    
+                    location.reload();
                 },
                 error: function (error) {
                     $("#responseMessage").text("An error occurred.");

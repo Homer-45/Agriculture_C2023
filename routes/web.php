@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\LivestockController;
 use App\Http\Controllers\FarmerController;
+use App\Http\Controllers\CropController;
 use App\Http\Controllers\SettingController;
 
 /*
@@ -19,7 +20,7 @@ use App\Http\Controllers\SettingController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () { 
     return view('auth.login');
 });
 
@@ -44,6 +45,15 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     // Farmer
     Route::get('/all/farmer', [FarmerController::class, 'AllFarmer'])->name('all.farmer');
     Route::get('/add/farmer', [FarmerController::class, 'AddFarmer'])->name('add.farmer');
+    Route::post('/store/farmer', [FarmerController::class, 'StoreFarmer'])->name('store.farmer');
+    Route::get('/farmer/edit/{id}', [FarmerController::class, 'EditFarmer']);
+    Route::post('/farmer/update/{id}', [FarmerController::class, 'UpdateFarmer']);
+    // Crops
+    Route::get('/all/crop', [CropController::class, 'AllCrop'])->name('all.crop');
+    Route::get('/add/crop', [CropController::class, 'AddCrop'])->name('add.crop');
+    Route::post('/store/crop', [CropController::class, 'StoreCrop'])->name('store.crop');
+    Route::get('/crop/edit/{id}', [CropController::class, 'EditCrop']);
+    Route::post('/crop/update/{id}', [CropController::class, 'UpdateCrop']);
 
 
 }); //Admin Group middleware
