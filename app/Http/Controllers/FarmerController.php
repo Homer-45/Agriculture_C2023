@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Farmer;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\FarmerExport;
+use App\Imports\FarmerImport;
 
 class FarmerController extends Controller
 {
@@ -94,4 +97,27 @@ class FarmerController extends Controller
       ]);
       return Redirect()->route('all.farmer')->with($notification);
   }
+
+  public function ImportFarmer(){
+      return view('farmer.import_farmer');
+  }
+
+  public function Export(){
+      return Excel::download(new FarmerExport, 'farmer.xlsx');
+  }
+
+  public function Import(Request $request){
+   
+       
+       Excel::import(new FarmerImport, request()->file('import_file'),  \Maatwebsite\Excel\Excel::XLSX);
+
+       $notification = [
+           'message' => 'Imported Successfully',
+           'alert-type' => 'success',
+       ];
+   
+
+   return redirect()->back()->with($notification);
+   }
+
 }

@@ -19,10 +19,16 @@
 <section class="content">
     <div class="container-fluid">
         <div class="col-12">
+            <ol>
+                <a href="{{ route('add.farmer') }}"><button class="btn btn-success"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
+                &nbsp; &nbsp; &nbsp;
+                <a href="{{ route('import.farmer') }}"><button class="btn btn-warning"> Import</button></a>
+                &nbsp; &nbsp; &nbsp;
+                <a href="{{ route('add.farmer') }}"><button class="btn btn-danger"> Export</button></a>
+            </ol>
             <div class="card">
                 <div class="card-header bg-dark">
                     <h3 class="card-title mt-2">List</h3>
-                    <a href="{{ route('add.farmer') }}"><button class="btn btn-success float-sm-right" style="float:right"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
                 </div>
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
@@ -37,17 +43,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php($i = 1)
                             @foreach ($farmers as $farmer)
                             <tr>
-                                <td>{{$farmer->first_name}} {{$farmer->middle_name}} {{$farmer->last_name}}</td>
+                                <td>{{ $i++ }}. {{$farmer->first_name}} {{$farmer->middle_name}} {{$farmer->last_name}}</td>
                                 <td>{{$farmer->reference_number}}</td>
                                 <td>{{$farmer->barangay}}</td>
                                 <td>{{$farmer->mobile}}</td>
                                 <td>{{$farmer->date_birth}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info btn-sm"><i class="fa fa-print"></i> Print</button>
+                                    <!-- <button type="button" class="btn btn-info btn-sm"><i class="fa fa-print"></i> Print</button> -->
                                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Archive</button>
-                                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> View</button>
+                                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> View</button>
                                 </td>
                             </tr>
                             @endforeach

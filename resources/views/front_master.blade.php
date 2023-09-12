@@ -227,10 +227,31 @@
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 <script>
+    @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type', 'info') }}"
+        toastr.options.progressBar = true;
+        switch (type){
+        case 'info':
+            toastr.info("{{Session::get('message')}}");
+            break;
+
+        case 'success':
+            toastr.success("{{Session::get('message')}}");
+            break;
+
+        case 'warning':
+            toastr.warning("{{Session::get('message')}}");
+            break;
+        
+        case 'error':
+            toastr.error("{{Session::get('message')}}");
+            break;  
+        }
+    @endif
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    //   "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,

@@ -48,6 +48,11 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::post('/store/farmer', [FarmerController::class, 'StoreFarmer'])->name('store.farmer');
     Route::get('/farmer/edit/{id}', [FarmerController::class, 'EditFarmer']);
     Route::post('/farmer/update/{id}', [FarmerController::class, 'UpdateFarmer']);
+
+    Route::get('/import/farmer', [FarmerController::class, 'ImportFarmer'])->name('import.farmer');
+    Route::get('/export', [FarmerController::class, 'Export'])->name('export.farmer');
+    Route::post('/import', [FarmerController::class, 'Import'])->name('import');
+
     // Crops
     Route::get('/all/crop', [CropController::class, 'AllCrop'])->name('all.crop');
     Route::get('/add/crop', [CropController::class, 'AddCrop'])->name('add.crop');

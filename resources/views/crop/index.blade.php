@@ -62,9 +62,8 @@
                                 <td>{{$crop->kalabasa}}</td>
                                 <td>{{$crop->mango}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info btn-sm"><i class="fa fa-print"></i>Print</button>
-                                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Archive</button>
-                                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-eye"></i>View</button>
+                                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button>
+                                    <button type="button" class="btn btn-danger btn-sm ml-1"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             @endforeach
