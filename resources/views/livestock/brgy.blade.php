@@ -9,7 +9,7 @@
                 <!-- buttons list -->
                 <nav>
                     <ol>
-                        <a href="{{ route('add.livestock') }}"><button class="btn btn-success"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
+                        <a><button class="btn btn-success"  data-toggle="modal" data-target="#survey-modal"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
                         &nbsp; &nbsp; &nbsp;
                         <a href="{{ route('import.livestock') }}"><button class="btn btn-warning"> Import</button></a>
                         &nbsp; &nbsp; &nbsp;
@@ -26,11 +26,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-dark d-flat">
-                    <h3 class="card-title mt-2">List Livestock and Poultry</h3>
-                    <a><button class="btn btn-success float-sm-right" data-toggle="modal" data-target="#survey-modal" style="float:right"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
-                    <!-- <button type="button" class="btn btn-success float-sm-right" data-toggle="modal" data-target="#modal-lg">
-                    Launch Large Modal
-                    </button> -->
+                    <h3 class="card-title mt-2">List</h3>
                 </div>
                 <div class="card-body">
                     <table id="example3" class="table table-bordered table-striped" style="font-size: 14px;">
@@ -100,7 +96,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header bg-success">
                                                     <h4 class="modal-title">Livestock Update</h4>
-                                                    <button type="button" class="close bg-danger" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 35px;">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -199,7 +195,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Permanently Delete Record?</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 35px;">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -241,12 +237,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-success">
-                <h4 class="modal-title">Livestock and Poultry survey</h4>
-                <button type="button" class="close bg-danger" data-dismiss="modal" aria-label="Close">
+                <h4 class="modal-title">Add Livestock</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 35px;">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="{{ route('submit-form') }}" class="needs-validation">
+            <form method="POST" action="{{ route('submit-form') }}" class="needs-validation" onsubmit="btn.disabled = true; return true;">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group col-md-7">
@@ -326,8 +322,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" name="btn">Submit</button>
                 </div>
             </form>
         </div>

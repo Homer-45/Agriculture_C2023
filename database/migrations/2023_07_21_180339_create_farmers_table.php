@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('farmers', function (Blueprint $table) {
             $table->id();
-            $table->integer('reference_number')->nullable();
+            $table->string('reference_number')->nullable();
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('province')->nullable();
             $table->string('region')->nullable();
-            $table->integer('mobile')->nullable();
+            $table->string('mobile')->nullable();
             $table->string('date_birth')->nullable();
             $table->string('place_birth')->nullable();
             $table->string('religion')->nullable();
@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('spouse')->nullable();
             $table->string('mothername')->nullable();
             $table->string('govID')->nullable();
-            $table->integer('id_number')->nullable();
+            $table->string('id_number')->nullable();
             // $table->string('main_livelihood')->nullable();
             // $table->string('farming_activity')->nullable();
             // $table->string('farmworkers_work')->nullable();

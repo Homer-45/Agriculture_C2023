@@ -4,26 +4,26 @@
     <div class="container-fluid">
         <div class="row mb-5">
             <div class="col-sm-6">
-                <h1 class="m-2">Farmer Information</h1>
+                <h1 class="m-2">Update/View Farmer Information</h1>
             </div>
         </div>
         <div class="row col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12 ml-5" style=" display: flex; align-items: center; justify-content: center;">
             <!-- general form elements -->
             <div class="card card-dark card-outline">
                 <div class="card-header bg-success">
-                    <h3 class="card-title">Quick Example</h3>
+                    <h3 class="card-title">Personal Information</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" action="{{ url('farmer/update/' .$farmers->id) }}" method="POST" enctype="multipart/form-data" >
+                <form class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" action="{{ url('farmer/update/' .$farmers->id) }}" method="POST" enctype="multipart/form-data" onsubmit="btn.disabled = true; return true;">
                     @csrf
                     <div class="card-body">
-                        <div class="card bg-dark mb-3" style="height:40px;">
+                        <!-- <div class="card bg-dark mb-3" style="height:40px;">
                             <h5 class="p-2">PERSONAL INFORMATION</h5>
-                        </div>
+                        </div> -->
                         <div class="row form-group col-md-6">
-                            <label for="exampleInputEmail1">Reference Number</label>
-                            <input type="text" class="form-control text-center" name="reference_number" value="{{ $farmers->reference_number }}" placeholder="Region  --  Province  --  City/Municipality  --  Barangay">
+                            <label for="exampleInputEmail1">Reference Number</label><p> (Region  --  Province  --  City/Municipality  --  Barangay)</p>
+                            <input type="text" class="form-control text-center" name="reference_number" value="{{ $farmers->reference_number }}" pattern="\d{4}-\d{4}-\d{4}-\d{4}">
                         </div>
                         <div class="row">
                             <div class="form-group col-md-2" >
@@ -67,7 +67,7 @@
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Barangay:</label>
-                                <input type="text" class="form-control" name="barangay" value="{{ $farmers->barangay }}">>
+                                <input type="text" class="form-control" name="barangay" value="{{ $farmers->barangay }}">
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Municipality/City:</label>
@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="form-group col-md-2" >
                                 <label>Mobile Number:</label>
-                                <input type="text" class="form-control" name="mobile">
+                                <input type="text" class="form-control" name="mobile" pattern="[0-9]{10}">
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Date of Birth:</label>
@@ -160,7 +160,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary" style="float:right;">Submit</button>
+                        <button type="submit" class="btn btn-primary" style="float:right;" name="btn">Submit</button>
                     </div>
                 </form>
             </div>

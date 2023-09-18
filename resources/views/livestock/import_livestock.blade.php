@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-2">kiw Information</h1>
+                <h1 class="m-2">Livestock</h1>
             </div>
         </div>
         <nav>
@@ -12,20 +12,20 @@
                 <a href="{{ route('livestock.export') }}"><button class="btn btn-danger"> Download Xlsx</button></a>
             </ol>
         </nav>
-        <div class="row col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12" style=" display: flex; align-items: center; justify-content: center;">
+        <div class="col-md-4 ml-3">
             <!-- general form elements -->
-            <div class="card card-dark card-outline">
-                <div class="card-header bg-success">
+            <div class="card card-success">
+                <div class="card-header">
                     <h3 class="card-title">Import Livestock</h3>
                 </div>
-                <form class="forms-sample" action="{{ route('livestock.import') }}" method="POST" enctype="multipart/form-data">
+                <form class="forms-sample p-3" action="{{ route('livestock.import') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label class="form-label">Xlsx File Import</label>
                         <input type="file" name="import_Livestockfile" class="form-control">
                     </div>
                     
-                    <div class="card-footer">
+                    <div>
                         <button type="submit" class="btn btn-primary" style="float:right;">Upload</button>
                     </div>
                 </form>

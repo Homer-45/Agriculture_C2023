@@ -27,7 +27,6 @@
             <div class="card">
                 <div class="card-header bg-dark">
                     <h3 class="card-title mt-2">List</h3>
-                    <a><button class="btn btn-success float-sm-right" data-toggle="modal" data-target="#survey-modal" style="float:right"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
                 </div>
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
@@ -80,7 +79,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header bg-success">
                                                     <h4 class="modal-title">Crops Update</h4>
-                                                    <button type="button" class="close bg-danger" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 35px;">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -150,7 +149,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div id="responseMessage"></div>
                                                     <div class="modal-footer justify-content-between">
                                                         <button type="submit" class="btn btn-primary">Save changes</button>
                                                     </div>
@@ -166,7 +164,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Permanently Delete Record?</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 35px;">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -209,12 +207,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-success">
-                <h4 class="modal-title">Livestock and Poultry survey</h4>
-                <button type="button" class="close bg-danger" data-dismiss="modal" aria-label="Close">
+                <h4 class="modal-title">Add Crops</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 35px;">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" id="createLivestock" action="{{ route('store.crop') }}" class="needs-validation">
+            <form method="POST" action="{{ route('store.crop') }}" class="needs-validation" onsubmit="btn.disabled = true; return true;">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group col-md-6">
@@ -280,9 +278,8 @@
                         </div>
                     </div>
                 </div>
-                <div id="responseMessage"></div>
-                <div class="modal-footer justify-content-between">
-                    <button type="submit" id="submited" class="btn btn-primary">Save changes</button>
+                <div class="modal-footer">
+                    <button type="submit" id="submited" class="btn btn-primary" name="btn">Submit</button>
                 </div>
             </form>
         </div>
