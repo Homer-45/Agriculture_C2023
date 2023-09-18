@@ -2,12 +2,12 @@
 @section('content')
 <div class="content-header">
     <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row mb-5">
             <div class="col-sm-6">
-                <h1 class="m-2">Livestock Information</h1>
+                <h1 class="m-2">Farmer Information</h1>
             </div>
         </div>
-        <div class="row col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12" style=" display: flex; align-items: center; justify-content: center;">
+        <div class="row col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12 ml-5" style=" display: flex; align-items: center; justify-content: center;">
             <!-- general form elements -->
             <div class="card card-dark card-outline">
                 <div class="card-header bg-success">
@@ -18,32 +18,6 @@
                 <form class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" action="{{ route('store.farmer') }}" method="POST" enctype="multipart/form-part" >
                     @csrf
                     <div class="card-body">
-                        <div class="row">
-                            <div class="form-group col-md-5">
-                                <label for="exampleInputFile">2X2 Picture:</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="exampleInputFile">Signature:</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="card bg-dark mb-3" style="height:40px;">
                             <h5 class="p-2">PERSONAL INFORMATION</h5>
                         </div>
@@ -184,220 +158,9 @@
                                 <input type="text" class="form-control" name="id_number" required>
                             </div>
                         </div>
-                        <div class="card bg-dark mb-3 mt-1" style="height:40px;">
-                            <h5 class="p-2">PART II: FARM PROFILE</h5>
-                        </div>
-                        <div class="card mb-3 mt-1" style="height:50px;">
-                            <div class="row d-flex p-3">
-                                <div class="form-check col-md-2">
-                                    <label for="exampleInputEmail1">Main Livelihood:</label>
-                                </div>
-                                <div class="form-check col-md-2">
-                                    <input class="form-check-input" type="checkbox" name="main_livelihood" value="Farmer">
-                                    <label class="form-check-label">Farmer</label>
-                                </div>
-                                <div class="form-check col-md-3">
-                                    <input class="form-check-input" type="checkbox" name="main_livelihood" value="Farmworker/Laborer">
-                                    <label class="form-check-label">Farmworker/Laborer</label>
-                                </div>
-                                <div class="form-check col-md-3">
-                                    <input class="form-check-input" type="checkbox" name="main_livelihood" value="Fisherfolk">
-                                    <label class="form-check-label">Fisherfolk</label>
-                                </div>
-                                <div class="form-check col-md-2">
-                                    <input class="form-check-input" type="checkbox" name="main_livelihood" value="Agri Youth">
-                                    <label class="form-check-label">Agri Youth</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-center"><u>For Farmers:</u></h5>
-                                        <label for="exampleInputEmail1">Type of Farming Activity</label>
-                                        <div class="col">
-                                            <div class="form-check col-md-2">
-                                                <input class="form-check-input" type="checkbox" name="farming_activity" value="Rice">
-                                                <label class="form-check-label">Rice</label>
-                                            </div>
-                                            <div class="form-check col-md-2">
-                                                <input class="form-check-input" type="checkbox" name="farming_activity" value="Corn">
-                                                <label class="form-check-label">Corn</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox">
-                                                <label class="form-check-label">Other Crops,</label>
-                                                <label class="form-check-label d-flex" style="font-size:13px">Please, specify:
-                                                    <input type="text" class="form-control form-control-border col-md-7" name="farming_activity">
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox">
-                                                <label class="form-check-label">Livestock,</label>
-                                                <label class="form-check-label d-flex" style="font-size:13px">Please, specify:
-                                                    <input type="text" class="form-control form-control-border col-md-7" name="farming_activity">
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox">
-                                                <label class="form-check-label">Poultry,</label>
-                                                <label class="form-check-label d-flex" style="font-size:13px">Please, specify:
-                                                    <input type="text" class="form-control form-control-border col-md-7" name="farming_activity">
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-center"><u>For Farmworkers:</u></h5>
-                                        <label for="exampleInputEmail1">Kind of work</label>
-                                        <div class="col-md-10 mb-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="farmworkers_work" value="Land Preparation">
-                                                <label class="form-check-label">Land Preparation</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="farmworkers_work" value="Planting/Transplanting">
-                                                <label class="form-check-label">Planting/Transplanting</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="farmworkers_work" value="Cultivation">
-                                                <label class="form-check-label">Cultivation</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="farmworkers_work" value="Harvesting">
-                                                <label class="form-check-label">Harvesting</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="farmworkers_work">
-                                                <label class="form-check-label">Others, Please specify:
-                                                    <input type="text" class="form-control form-control-border col-md-11 ml-1 mb-5" name="farmworkers_work">
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-center"><u>For Fisherfolk:</u></h5>
-                                        <p class="card-text" style="font-size:12px">
-                                            The Lending Conduit shall coordinate with the Bureau of Fisheries 
-                                            and Aquatic Resources (BFAR) in the issuance of a certification 
-                                            that the fisherfolk-borrower under PUNLA/PLEA is registered 
-                                            under the Municipal Registration (FishR).
-                                        </p>
-                                        <label for="exampleInputEmail1">Kind of Fishing Activity</label>
-                                        <div class="row">
-                                            <div class="form-check ml-2">
-                                                <input class="form-check-input" type="checkbox" name="fisherfolk" value="Fish Capture">
-                                                <label class="form-check-label">Fish Capture</label>
-                                            </div>
-                                            <div class="form-check ml-3">
-                                                <input class="form-check-input" type="checkbox" name="fisherfolk" value="Fish Processing">
-                                                <label class="form-check-label">Fish Processing</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-check ml-2">
-                                                <input class="form-check-input" type="checkbox" name="fisherfolk" value="Aquaculture">
-                                                <label class="form-check-label">Aquaculture</label>
-                                            </div>
-                                            <div class="form-check ml-3">
-                                                <input class="form-check-input" type="checkbox" name="fisherfolk" value="Fish Vending">
-                                                <label class="form-check-label">Fish Vending</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="fisherfolk" value="Gleaning">
-                                            <label class="form-check-label">Gleaning</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox">
-                                            <label class="form-check-label">Others, Please specify:
-                                                <input type="text" class="form-control form-control-border col-md-11 ml-1" name="fisherfolk">
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-center"><u>For Agri Youth:</u></h5>
-                                        <p class="card-text" style="font-size:12px">
-                                            For the purposes of trainings, financial assistance, 
-                                            and other programs catered to the youth 
-                                            with involvement to any agriculture activity.
-                                        </p>
-                                        <label for="exampleInputEmail1">Type of Involvement</label>
-                                        <div class="col">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="agri_youth" value="Part of a farming household">
-                                                <label class="form-check-label" style="font-size:12px">
-                                                    Part of a farming household
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="agri_youth" value="Attending/attended formal agri-fishery related course">
-                                                <label class="form-check-label" style="font-size:12px">
-                                                    Attending/attended formal agri-fishery related course
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="agri_youth" value="Attending/attended non-formal agri-fishery related course">
-                                                <label class="form-check-label" style="font-size:12px">
-                                                    Attending/attended non-formal agri-fishery related course 
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="agri_youth" value="Participated in any agricultural activity/program ">
-                                                <label class="form-check-label" style="font-size:12px">
-                                                    Participated in any agricultural activity/program 
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox">
-                                                <label class="form-check-label" style="font-size:12px">
-                                                    Others, specify
-                                                    <input type="text" class="form-control form-control-border col-md-11 ml-1" name="agri_youth">
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card mb-3" style="height:70px;">
-                            <div class="row p-4">
-                                <div class="form-check mr-4">
-                                    <label for="exampleInputEmail1">Gross Annual Income Last Year:</label>
-                                </div>
-                                <div class="form-check">
-                                    <label class="form-check-label d-flex">
-                                        Farming: 
-                                        <input type="text" class="form-control form-control-border ml-1" name="grossFarming">
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <label class="form-check-label d-flex">
-                                        Non-Farming: 
-                                        <div class="row">
-                                            <input type="text" class="form-control form-control-border ml-2" name="grossNonFarming">
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary" style="float:right;">Next</button>
+                        <button type="submit" class="btn btn-primary" style="float:right;">Submit</button>
                     </div>
                 </form>
             </div>

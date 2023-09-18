@@ -39,26 +39,40 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth', 'role:admin'])->group(function(){
 
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
-    // Livestock
-    Route::get('/all/livestock', [LivestockController::class, 'AllLivestock'])->name('all.livestock');
-    Route::get('/add/livestock', [LivestockController::class, 'AddLivestock'])->name('add.livestock');
     // Farmer
     Route::get('/all/farmer', [FarmerController::class, 'AllFarmer'])->name('all.farmer');
     Route::get('/add/farmer', [FarmerController::class, 'AddFarmer'])->name('add.farmer');
     Route::post('/store/farmer', [FarmerController::class, 'StoreFarmer'])->name('store.farmer');
     Route::get('/farmer/edit/{id}', [FarmerController::class, 'EditFarmer']);
     Route::post('/farmer/update/{id}', [FarmerController::class, 'UpdateFarmer']);
-
+    Route::get('/delete/farmer/{id}', [FarmerController::class, 'Delete']);
+    // Farmer Ex and Im
     Route::get('/import/farmer', [FarmerController::class, 'ImportFarmer'])->name('import.farmer');
-    Route::get('/export', [FarmerController::class, 'Export'])->name('export.farmer');
+    Route::get('/export', [FarmerController::class, 'Export'])->name('export');
     Route::post('/import', [FarmerController::class, 'Import'])->name('import');
-
+    // Livestock
+    Route::get('/all/livestock', [LivestockController::class, 'AllLivestock'])->name('all.livestock');
+    Route::get('/bulan/livestock', [LivestockController::class, 'BulanLivestock'])->name('bulan.livestock');
+    Route::get('/add/livestock', [LivestockController::class, 'AddLivestock'])->name('add.livestock');
+    Route::get('/livestock/edit/{id}', [LivestockController::class, 'EditLivestock']);
+    Route::post('/livestock/update/{id}', [LivestockController::class, 'UpdateLivestock']);
+    Route::get('/delete/livestock/{id}', [LivestockController::class, 'Delete']);
+    // Livestock Ex and Im
+    Route::get('/import/livestock', [LivestockController::class, 'ImportLivestock'])->name('import.livestock');
+    Route::get('/livestock/export', [LivestockController::class, 'LivestockExport'])->name('livestock.export');
+    Route::post('/livestock/import', [LivestockController::class, 'LivestockImport'])->name('livestock.import');
     // Crops
     Route::get('/all/crop', [CropController::class, 'AllCrop'])->name('all.crop');
     Route::get('/add/crop', [CropController::class, 'AddCrop'])->name('add.crop');
     Route::post('/store/crop', [CropController::class, 'StoreCrop'])->name('store.crop');
     Route::get('/crop/edit/{id}', [CropController::class, 'EditCrop']);
     Route::post('/crop/update/{id}', [CropController::class, 'UpdateCrop']);
+    Route::get('/delete/crop/{id}', [CropController::class, 'Delete']);
+    Route::get('/account', [SettingController::class, 'Account'])->name('account');
+    // Crops Ex and Im
+    Route::get('/import/crop', [CropController::class, 'ImportCrop'])->name('import.crop');
+    Route::get('/crop/export', [CropController::class, 'CropExport'])->name('crop.export');
+    Route::post('/crop/import', [CropController::class, 'CropImport'])->name('crop.import');
 
 
 }); //Admin Group middleware
@@ -69,7 +83,7 @@ Route::middleware(['auth', 'role:agent'])->group(function(){
 
 }); //Agent Group middleware
 
-Route::get('/account', [SettingController::class, 'Account'])->name('account');
+
 Route::get('/calendar', [SettingController::class, 'Calendar'])->name('calendar');
 // User or Barangay
 Route::post('/submit-form', [LivestockController::class, 'Submit'])->name('submit-form');

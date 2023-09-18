@@ -38,7 +38,7 @@
   <div class="wrapper">
 
     <!-- Navbar --> 
-    <nav class="main-header navbar navbar-expand navbar-success navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
        <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -109,6 +109,13 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href=" {{ route('bulan.livestock') }}" class="nav-link ml-4 {{ Request::is('bulan/livestock')? 'active': '' }}">
+                                            <p>Poultry Population</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('all.crop') }}" class="nav-link {{ Request::is('all/crop')? 'active': '' }}">
@@ -165,13 +172,13 @@
     </div>
     <!-- /.content-wrapper Dashboard -->
 
-  <footer class="main-footer">
+  <!-- <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.2.0
     </div>
-  </footer>
+  </footer> -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

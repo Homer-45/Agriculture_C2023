@@ -34,13 +34,13 @@ return new class extends Migration
             $table->string('mothername')->nullable();
             $table->string('govID')->nullable();
             $table->integer('id_number')->nullable();
-            $table->string('main_livelihood')->nullable();
-            $table->string('farming_activity')->nullable();
-            $table->string('farmworkers_work')->nullable();
-            $table->string('fisherfolk')->nullable();
-            $table->string('agri_youth')->nullable();
-            $table->string('grossFarming')->nullable();
-            $table->string('grossNonFarming')->nullable();
+            // $table->string('main_livelihood')->nullable();
+            // $table->string('farming_activity')->nullable();
+            // $table->string('farmworkers_work')->nullable();
+            // $table->string('fisherfolk')->nullable();
+            // $table->string('agri_youth')->nullable();
+            // $table->string('grossFarming')->nullable();
+            // $table->string('grossNonFarming')->nullable();
             $table->timestamps();
         });
     }

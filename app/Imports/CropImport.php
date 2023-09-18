@@ -2,10 +2,10 @@
 
 namespace App\Imports;
 
-use App\Models\Farmer;
+use App\Models\Crop;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class FarmerImport implements ToModel
+class CropImport implements ToModel
 {
     /**
     * @param array $row
@@ -14,10 +14,11 @@ class FarmerImport implements ToModel
     */
     public function model(array $row)
     {
-        return new Farmer([
-            'first_name' => $row[0],
-            'sex' => $row[1],
-            'date_birth' =>$row[2],
+        return new Crop([
+            'talong' => $row[0],
+            'balatong' => $row[1],
+            'okra' =>$row[2],
+            'upo' =>$row[3],
         ]);
     }
 }

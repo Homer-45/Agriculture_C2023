@@ -5,10 +5,17 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-2">Farmer Information</h1>
+                <h1 class="m-2 mb-3"><b>Farmer Information</b></h1>
                 <!-- buttons list -->
-                <!-- <a href=""><button class="btn btn-success float-sm-left"><i class="nav-icon fas fa-plus"></i> Add List</button></a>  -->
-                <!-- <a href=""><button class="btn btn-danger float-sm-left ml-2"><i class="nav-icon fas fa-trash"></i> Archive List</button></a> -->
+                <nav>
+                    <ol>
+                        <a href="{{ route('add.farmer') }}"><button class="btn btn-success"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="{{ route('import.farmer') }}"><button class="btn btn-warning"> Import</button></a>
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="{{ route('export') }}"><button class="btn btn-danger"> Export</button></a>
+                    </ol>
+                </nav>
             </div>
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -19,13 +26,6 @@
 <section class="content">
     <div class="container-fluid">
         <div class="col-12">
-            <ol>
-                <a href="{{ route('add.farmer') }}"><button class="btn btn-success"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
-                &nbsp; &nbsp; &nbsp;
-                <a href="{{ route('import.farmer') }}"><button class="btn btn-warning"> Import</button></a>
-                &nbsp; &nbsp; &nbsp;
-                <a href="{{ route('add.farmer') }}"><button class="btn btn-danger"> Export</button></a>
-            </ol>
             <div class="card">
                 <div class="card-header bg-dark">
                     <h3 class="card-title mt-2">List</h3>
@@ -52,9 +52,34 @@
                                 <td>{{$farmer->mobile}}</td>
                                 <td>{{$farmer->date_birth}}</td>
                                 <td>
-                                    <!-- <button type="button" class="btn btn-info btn-sm"><i class="fa fa-print"></i> Print</button> -->
-                                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Archive</button>
-                                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> View</button>
+                                    <!-- <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button> -->
+                                    <a href="{{ url('farmer/edit/'.$farmer->id) }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> View</a>
+                                    <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#modal-danger{{$farmer->id}}">
+                                        <i class="nav-icon fas fa-trash"></i>Delete
+                                    </button>
+                                    <div class="modal fade" id="modal-danger{{$farmer->id}}">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Permanently Delete Record?</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="{{ url('delete/farmer/'.$farmer->id) }}">
+                                                    <div class="modal-body" id="modal-danger">
+                                                        <p>Are you sure you want to delete this Farmer?</p>
+                                                    </div>
+                                                    <div class="modal-footer justify-content-between">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach

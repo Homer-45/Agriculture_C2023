@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Farmer;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\FarmerExport;
 use App\Imports\FarmerImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FarmerController extends Controller
 {
@@ -39,14 +40,7 @@ class FarmerController extends Controller
          'spouse'                   => $request->spouse,
          'mothername'               => $request->mothername,
          'govID'                    => $request->govID,
-         'id_number'                => $request->id_number,
-         // 'main_livelihood'          => explode(',', $request->main_livelihood),
-         // 'farming_activity'         => $request->farming_activity,
-         // 'farmworkers_work'         => $request->farmworkers_work,
-         // 'fisherfolk'               => $request->fisherfolk,
-         // 'agri_youth'               => $request->agri_youth,
-         // 'grossFarming'             => $request->grossFarming,
-         // 'grossNonFarming'          => $request->grossNonFarming, 
+         'id_number'                => $request->id_number, 
       ]);
       $notification = ([
           'message' =>'Successfully Added Farmer', 'Success',
@@ -83,19 +77,20 @@ class FarmerController extends Controller
          'mothername'               => $request->mothername,
          'govID'                    => $request->govID,
          'id_number'                => $request->id_number,
-         // 'main_livelihood'          => explode(',', $request->main_livelihood),
-         // 'farming_activity'         => $request->farming_activity,
-         // 'farmworkers_work'         => $request->farmworkers_work,
-         // 'fisherfolk'               => $request->fisherfolk,
-         // 'agri_youth'               => $request->agri_youth,
-         // 'grossFarming'             => $request->grossFarming,
-         // 'grossNonFarming'          => $request->grossNonFarming,
       ]);
       $notification = ([
           'message' =>'Farmer Successfully Updated', 'Success',
           'alert-type' => 'success',
       ]);
       return Redirect()->route('all.farmer')->with($notification);
+  }
+  public function Delete($id){
+    $delete = Farmer::find($id)->delete();
+    $notification = ([
+        'message' =>'Deleted Successfully', 'Error',
+        'alert-type' => 'success',
+    ]);
+    return redirect()->back()->with($notification);
   }
 
   public function ImportFarmer(){
@@ -107,17 +102,22 @@ class FarmerController extends Controller
   }
 
   public function Import(Request $request){
-   
-       
-       Excel::import(new FarmerImport, request()->file('import_file'),  \Maatwebsite\Excel\Excel::XLSX);
 
-       $notification = [
-           'message' => 'Imported Successfully',
-           'alert-type' => 'success',
-       ];
-   
+    $file = $request->file('import_file', 'XLSX');
+    if ($file) {
+        // File is not null, proceed with import
+        Excel::import(new FarmerImport, $file);
+    } else {
+        // Handle the case where the file is null
+        dd($file, 'Back to previous page');
+    }
+    $notification = ([
+        'message' =>'Farmer Successfully imported', 'Success',
+        'alert-type' => 'success',
+    ]);
+    
+    return redirect()->back()->with($notification);
+  }
 
-   return redirect()->back()->with($notification);
-   }
 
 }

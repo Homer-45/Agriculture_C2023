@@ -1,13 +1,26 @@
 @extends('front_master')
 @section('content')
-<!-- Content Header (Page header) -->
-<div class="container-fluid">
-    <div class="row mb-2">
-        <div class="col-sm-6">
-            <h1 class="m-2">Livestock Information</h1>
-        </div>
-    </div>
+<!-- Content Header (Page header) --> 
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-2 mb-3"><b>Livestock Information</b></h1>
+                <!-- buttons list -->
+                <nav>
+                    <ol>
+                        <a href="{{ route('add.livestock') }}"><button class="btn btn-success"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="{{ route('import.livestock') }}"><button class="btn btn-warning"> Import</button></a>
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="{{ route('livestock.export') }}"><button class="btn btn-danger"> Export</button></a>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
 </div>
+<!-- /.content-header -->
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
@@ -56,8 +69,9 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             <tr>
-                                <td>X</td>
+                                <td>{{ $carabaoCounts }}</td>
                                 <td>Internet Explorer Explorer 4.0</td>
                                 <td>Internet</td>
                                 <td>Win 95+</td>
@@ -77,6 +91,7 @@
                                 <td>X</td>
                                 
                             </tr>
+
                         </tbody>
                     </table>
                 </div>

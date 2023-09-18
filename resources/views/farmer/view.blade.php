@@ -2,12 +2,12 @@
 @section('content')
 <div class="content-header">
     <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row mb-5">
             <div class="col-sm-6">
-                <h1 class="m-2">Livestock Information</h1>
+                <h1 class="m-2">Farmer Information</h1>
             </div>
         </div>
-        <div class="row col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12" style=" display: flex; align-items: center; justify-content: center;">
+        <div class="row col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12 ml-5" style=" display: flex; align-items: center; justify-content: center;">
             <!-- general form elements -->
             <div class="card card-dark card-outline">
                 <div class="card-header bg-success">
@@ -15,41 +15,15 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" action="{{ url('farmer/update/' .$farmers->id) }}" method="POST" enctype="multipart/form-part" >
+                <form class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" action="{{ url('farmer/update/' .$farmers->id) }}" method="POST" enctype="multipart/form-data" >
                     @csrf
                     <div class="card-body">
-                        <div class="row">
-                            <div class="form-group col-md-5">
-                                <label for="exampleInputFile">2X2 Picture:</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="exampleInputFile">Signature:</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="card bg-dark mb-3" style="height:40px;">
                             <h5 class="p-2">PERSONAL INFORMATION</h5>
                         </div>
                         <div class="row form-group col-md-6">
                             <label for="exampleInputEmail1">Reference Number</label>
-                            <input type="text" class="form-control text-center" name="reference_number" value="{{ $farmers->reference_number }}" required>
+                            <input type="text" class="form-control text-center" name="reference_number" value="{{ $farmers->reference_number }}" placeholder="Region  --  Province  --  City/Municipality  --  Barangay">
                         </div>
                         <div class="row">
                             <div class="form-group col-md-2" >
@@ -62,11 +36,11 @@
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Last Name:</label>
-                                <input type="text" class="form-control" name="last_name" value="{{ $farmers->last_name}}" onkeydown="return /[a-z ]/i.test(event.key)" required>
+                                <input type="text" class="form-control" name="last_name" name="last_name" value="{{ $farmers->last_name}}" onkeydown="return /[a-z ]/i.test(event.key)" required>
                             </div>
                             <div class="form-group col-md-1">
                                 <label>Suffix:</label>
-                                <input type="text" class="form-control" name="suffix" placeholder="eg.Jr" value="{{ $farmers->suffix }}" onkeydown="return /[a-z ]/i.test(event.key)" required>
+                                <input type="text" class="form-control" name="suffix" value="{{ $farmers->suffix }}" onkeydown="return /[a-z ]/i.test(event.key)">
                             </div>
                             <div class="form-group col-md-2">
                                 <label class="">Sex:</label>
@@ -93,7 +67,7 @@
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Barangay:</label>
-                                <input type="text" class="form-control" name="barangay" value="{{ $farmers->barangay }}">
+                                <input type="text" class="form-control" name="barangay" value="{{ $farmers->barangay }}">>
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Municipality/City:</label>
@@ -111,20 +85,20 @@
                         <div class="row">
                             <div class="form-group col-md-2" >
                                 <label>Mobile Number:</label>
-                                <input type="text" class="form-control" name="mobile" value="{{ $farmers->mobile }}">
+                                <input type="text" class="form-control" name="mobile">
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Date of Birth:</label>
-                                <input type="date" class="form-control" name="date_birth" value="{{ $farmers->date_birth }}">
+                                <input type="date" class="form-control" name="date_birth">
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Place of Birth:</label>
-                                <input type="text" class="form-control" name="place_birth" value="{{ $farmers->place_birth }}">
+                                <input type="text" class="form-control" name="place_birth" placeholder="Municipality">
                             </div>
                             <div class="form-group ml-2">
                                 <label>Civil Status:</label>
                                 <select class="form-control col-md-13" name="status">
-                                    <!-- <option></option> -->
+                                    <option></option>
                                     <option value="Single" @if($farmers->status == 'Single') selected @endif>Single</option>
                                     <option value="Married" @if($farmers->status == 'Married') selected @endif>Married</option>
                                     <option value="Widowed" @if($farmers->status == 'Widowed') selected @endif>Widowed</option>
@@ -175,7 +149,7 @@
                                         <label class="form-check-label">If Yes, specify ID type: </label>
                                     </div>
                                     <div class="form-check row d-flex">
-                                        <input type="text" class="form-control form-control-border col-md-11" name="govID">
+                                        <input type="text" class="form-control form-control-border col-md-11" name="govID" value="{{ $farmers->govID }}">
                                     </div>
                                 </div>
                             </div>
@@ -184,13 +158,9 @@
                                 <input type="text" class="form-control" name="id_number" value="{{ $farmers->id_number }}" required>
                             </div>
                         </div>
-                        <div class="card bg-dark mb-3 mt-1" style="height:40px;">
-                            <h5 class="p-2">PART II: FARM PROFILE</h5>
-                        </div>
-                        
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary" style="float:right;">Next</button>
+                        <button type="submit" class="btn btn-primary" style="float:right;">Submit</button>
                     </div>
                 </form>
             </div>

@@ -9,25 +9,25 @@ class Livestock extends Model
 {
     use HasFactory;
 
-    // protected $table ='livestocks';
-    // protected $fillable = [
+    protected $table ='livestocks';
+    protected $fillable = [
 
-    //     'carabao',
-    //     'cattle',
-    //     'breeder',
-    //     'fattener',
-    //     'goat',
-    //     'sheep',
-    //     'broiler',
-    //     'layer',
-    //     'native',
-    //     'muscovy',
-    //     'mallard',
-    //     'turkey',
-    //     'geese',
-    //     'quail',
-    //     'dog',
-    //     'horse',
-    // ];
+        'carabao',
+        'cattle',
+        'breeder',
+        'fattener',
+        'goat',
+        'sheep',
+        'broiler',
+        'layer',
+        'native',
+        'muscovy',
+        'mallard',
+        'turkey',
+        'geese',
+        'quail',
+        'dog',
+        'horse',
+    ];
 
 }
