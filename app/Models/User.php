@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Barangay;
 
 class User extends Authenticatable
 {
@@ -16,12 +17,15 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
-     */
+     */ 
     protected $fillable = [
         'name',
         'username',
-        'email',
+        'email', 
         'password',
+        'role',
+        'status',
+        'barangay_id',
     ];
 
     /**
@@ -43,4 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function barangays(){
+        return $this->belongsTo(Barangay::class, 'barangay_id');
+
+    }
 }

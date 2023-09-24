@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Farmer;
+
 
 class Livestock extends Model
 {
@@ -28,6 +30,11 @@ class Livestock extends Model
         'quail',
         'dog',
         'horse',
+        'farmers_id',
     ];
+    public function farmers(){
+        return $this->belongsTo(Farmer::class);
+    }
+    
 
 }

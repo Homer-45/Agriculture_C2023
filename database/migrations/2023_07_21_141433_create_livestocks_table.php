@@ -13,22 +13,24 @@ return new class extends Migration
     {
         Schema::create('livestocks', function (Blueprint $table) {
             $table->id();
-            $table->integer('carabao')->nullable();
-            $table->integer('cattle')->nullable();
-            $table->integer('breeder')->nullable();
-            $table->integer('fattener')->nullable();
-            $table->integer('goat')->nullable();
-            $table->integer('sheep')->nullable();
-            $table->integer('broiler')->nullable();
-            $table->integer('layer')->nullable();
-            $table->integer('native')->nullable();
-            $table->integer('muscovy')->nullable();
-            $table->integer('mallard')->nullable();
-            $table->integer('turkey')->nullable();
-            $table->integer('geese')->nullable();
-            $table->integer('quail')->nullable();
-            $table->integer('dog')->nullable();
-            $table->integer('horse')->nullable();
+            $table->string('carabao')->nullable();
+            $table->string('cattle')->nullable();
+            $table->string('breeder')->nullable();
+            $table->string('fattener')->nullable();
+            $table->string('goat')->nullable();
+            $table->string('sheep')->nullable();
+            $table->string('broiler')->nullable();
+            $table->string('layer')->nullable();
+            $table->string('native')->nullable();
+            $table->string('muscovy')->nullable();
+            $table->string('mallard')->nullable();
+            $table->string('turkey')->nullable();
+            $table->string('geese')->nullable();
+            $table->string('quail')->nullable();
+            $table->string('dog')->nullable();
+            $table->string('horse')->nullable();
+
+            $table->foreignId('farmers_id')->constrained();
             $table->timestamps();
         });
     }

@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Barangay;
+use App\Models\Crop;
+use App\Models\Livestock;
 
 class Farmer extends Model
 {
@@ -32,12 +35,25 @@ class Farmer extends Model
         'mothername',
         'govID',
         'id_number',
-        'main_livelihood',
-        'farming_activity',
-        'farmworkers_work',
-        'fisherfolk',
-        'agri_youth',
-        'grossFarming',
-        'grossNonFarming',
+        'users_id',
+        'barangay_id'
+
     ];
+
+    public function barangays(){
+        return $this->belongsTo(Barangay::class, 'barangay_id');
+    }
+    // cgpt
+    public function getBarangayNameAttribute()
+    {
+        return $this->barangays->brgy_name;
+    }
+
+    public function crops(){
+        return $this->hasMany(Crop::class);
+    }
+
+    public function livestock(){
+        return $this->hasMany(Livestock::class);
+    }
 } 

@@ -67,7 +67,9 @@
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Barangay:</label>
-                                <input type="text" class="form-control" name="barangay" value="{{ $farmers->barangay }}">
+                                <select class="form-control" name="barangay">                                    
+                                    <option value="{{ $farmers->barangay_id }}" >{{ $farmers->barangays->brgy_name }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Municipality/City:</label>
@@ -75,7 +77,7 @@
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Province:</label>
-                                <input type="text" class="form-control" name="province" value="{{ $farmers->province }}">
+                                 <input type="text" class="form-control" name="province" value="{{ $farmers->province }}">
                             </div>
                             <div class="form-group col-md-1" >
                                 <label>Region:</label>
@@ -85,15 +87,15 @@
                         <div class="row">
                             <div class="form-group col-md-2" >
                                 <label>Mobile Number:</label>
-                                <input type="text" class="form-control" name="mobile" pattern="[0-9]{10}">
+                                <input type="text" class="form-control" name="mobile" value="{{ $farmers->mobile }}" pattern="[0-9]{10}">
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Date of Birth:</label>
-                                <input type="date" class="form-control" name="date_birth">
+                                <input type="date" class="form-control" name="date_birth" value="{{ $farmers->date_birth }}">
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Place of Birth:</label>
-                                <input type="text" class="form-control" name="place_birth" placeholder="Municipality">
+                                <input type="text" class="form-control" name="place_birth" value="{{ $farmers->place_birth }}">
                             </div>
                             <div class="form-group ml-2">
                                 <label>Civil Status:</label>

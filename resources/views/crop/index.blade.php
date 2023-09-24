@@ -8,7 +8,7 @@
             <div class="col-sm-6">
                 <h1 class="m-2 mb-3"><b>Crops Information</b></h1>
                 <!-- buttons list -->
-                <nav>
+                <!-- <nav>
                     <ol>
                         <a><button class="btn btn-success" data-toggle="modal" data-target="#survey-modal"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
                         &nbsp; &nbsp; &nbsp;
@@ -16,7 +16,7 @@
                         &nbsp; &nbsp; &nbsp;
                         <a href="{{ route('crop.export') }}"><button class="btn btn-danger"> Export</button></a>
                     </ol>
-                </nav>
+                </nav> -->
             </div>
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -29,6 +29,32 @@
                     <h3 class="card-title mt-2">List</h3>
                 </div>
                 <div class="card-body">
+                    <form method="GET" action="{{ route('all.crop') }}" class="remove">
+                        @csrf
+                        <div class="row">
+                            <div class="ml-2">
+                                <p>Filter Date By:</p>
+                            </div>
+                            <div class="col-sm-2 col-md-offset-2 mb-1">
+                                <input type="date" class="form-control form-control-sm" name="crop_fdate" id="crop_fdate" value="{{ request('crop_fdate') }}" required>
+                            </div>
+                            <div>
+                                <h5>To</h5>
+                            </div>
+                            <div class="col-sm-2 col-md-offset-2 mb-1">
+                                <input type="date" class="form-control form-control-sm" name="crop_sdate" id="crop_sdate" value="{{ request('crop_sdate') }}" required>
+                            </div>
+                            <div class="ml-1">
+                                <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+                            </div>
+                    </form>
+                            <div class="ml-2">
+                                <a href="{{ route('crop.export', request()->all()) }}" class="btn btn-info btn-sm">Export</a>
+                            </div>
+                            <div class="ml-2">
+                                <a href="/all/crop" class="btn btn-success btn-sm pull-right"><i class="fas fa-sync-alt"></i> Refresh</a>
+                            </div>
+                        </div>
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -36,8 +62,7 @@
                                 <th colspan="14" class="text-center bg-yellow">Crops Area/ sq/ mtr</th>
                             </tr>
                             <tr>
-                                <th width="10%">Name of Farmer</th>
-                                <th width="8%">Location of Farm</th>
+                                <th width="15%">Name of Farmer</th>
                                 <th width="4%">Talong</th>
                                 <th width="4%">Balatong</th>
                                 <th width="4%">Okra</th>
@@ -55,10 +80,9 @@
                         </thead>
                         <tbody>
                             @php($i = 1)
-                            @foreach ($crops as $crop)
+                            @foreach ($cropData as $crop)
                             <tr>
-                                <td>Internet Explorer 4.0</td>
-                                <td>Trident</td>
+                                <td>{{$crop->full_name}}</td>
                                 <td>{{$crop->talong}}</td>
                                 <td>{{$crop->balatong}}</td>
                                 <td>{{$crop->okra}}</td>
@@ -86,13 +110,13 @@
                                                 <form method="POST" id="createLivestock" action="{{ url('crop/update/' .$crop->id) }}" class="needs-validation">
                                                     @csrf
                                                     <div class="modal-body">
-                                                        <div class="form-group col-md-6">
+                                                        <div class="form-group col-md-10">
                                                             <label>Name:</label>
-                                                            <input type="text" name="event_name" value="" class="form-control" id="validationServer" aria-describedby="validationServerFeedback" disabled>
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label>Location of Farm</label>
-                                                            <input type="text" name="event_name" value="" class="form-control" id="validationServer" aria-describedby="validationServerFeedback" disabled>
+                                                            <select class="form-control col-md-6" name="farmers_id">
+                                                                @foreach($farmers as $farmer)
+                                                                <option value="{{ $farmer->id }}">{{ $farmer->full_name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                         <div class="row" style="display: flex; justify-content: center; align-items: center; ">
                                                             <div class="form-group col-md-2" >
@@ -215,13 +239,13 @@
             <form method="POST" action="{{ route('store.crop') }}" class="needs-validation" onsubmit="btn.disabled = true; return true;">
                 @csrf
                 <div class="modal-body">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-10">
                         <label>Name:</label>
-                        <input type="text" name="event_name" value="" class="form-control" id="validationServer" aria-describedby="validationServerFeedback" disabled>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Location of Farm</label>
-                        <input type="text" name="event_name" value="" class="form-control" id="validationServer" aria-describedby="validationServerFeedback" disabled>
+                        <select class="form-control col-md-6" name="farmers_id">
+                            @foreach($farmers as $farmer)
+                            <option value="{{ $farmer->id }}">{{ $farmer->full_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="row" style="display: flex; justify-content: center; align-items: center; ">
                         <div class="form-group col-md-2" >

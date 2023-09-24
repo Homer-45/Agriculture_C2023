@@ -46,10 +46,12 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/farmer/edit/{id}', [FarmerController::class, 'EditFarmer']);
     Route::post('/farmer/update/{id}', [FarmerController::class, 'UpdateFarmer']);
     Route::get('/delete/farmer/{id}', [FarmerController::class, 'Delete']);
+    Route::post('/select/farmer', [FarmerController::class, 'getDate']);
     // Farmer Ex and Im
     Route::get('/import/farmer', [FarmerController::class, 'ImportFarmer'])->name('import.farmer');
     Route::get('/export', [FarmerController::class, 'Export'])->name('export');
     Route::post('/import', [FarmerController::class, 'Import'])->name('import');
+
     // Livestock
     Route::get('/all/livestock', [LivestockController::class, 'AllLivestock'])->name('all.livestock');
     Route::get('/bulan/livestock', [LivestockController::class, 'BulanLivestock'])->name('bulan.livestock');
@@ -61,26 +63,16 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/import/livestock', [LivestockController::class, 'ImportLivestock'])->name('import.livestock');
     Route::get('/livestock/export', [LivestockController::class, 'LivestockExport'])->name('livestock.export');
     Route::post('/livestock/import', [LivestockController::class, 'LivestockImport'])->name('livestock.import');
+
     // Crops
-    Route::get('/all/crop', [CropController::class, 'AllCrop'])->name('all.crop');
-    Route::get('/add/crop', [CropController::class, 'AddCrop'])->name('add.crop');
-    Route::post('/store/crop', [CropController::class, 'StoreCrop'])->name('store.crop');
-    Route::get('/crop/edit/{id}', [CropController::class, 'EditCrop']);
-    Route::post('/crop/update/{id}', [CropController::class, 'UpdateCrop']);
-    Route::get('/delete/crop/{id}', [CropController::class, 'Delete']);
-   
-    // Crops Ex and Im
-    Route::get('/import/crop', [CropController::class, 'ImportCrop'])->name('import.crop');
-    Route::get('/crop/export', [CropController::class, 'CropExport'])->name('crop.export');
-    Route::post('/crop/import', [CropController::class, 'CropImport'])->name('crop.import');
+    
 
 
 }); //Admin Group middleware
 
-Route::middleware(['auth', 'role:agent'])->group(function(){
+Route::middleware(['auth', 'role:user'])->group(function(){
 
-    Route::get('/agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
-
+    
 }); //Agent Group middleware
 
 
@@ -93,3 +85,22 @@ Route::post('/store/user', [SettingController::class, 'StoreUser'])->name('store
 Route::get('/edit/{id}', [SettingController::class, 'Edit']);
 Route::post('/update/{id}', [SettingController::class, 'Update']);
 Route::get('/delete/{id}', [SettingController::class, 'Delete']);
+
+Route::get('/forgot/{id}', [SettingController::class, 'ForgotPassword']);
+Route::post('/change/{id}', [SettingController::class, 'ChangePassword']);
+
+
+
+Route::get('/all/crop', [CropController::class, 'AllCrop'])->name('all.crop');
+    Route::get('/add/crop', [CropController::class, 'AddCrop'])->name('add.crop');
+    Route::post('/store/crop', [CropController::class, 'StoreCrop'])->name('store.crop');
+    Route::get('/crop/edit/{id}', [CropController::class, 'EditCrop']);
+    Route::post('/crop/update/{id}', [CropController::class, 'UpdateCrop']);
+    Route::get('/delete/crop/{id}', [CropController::class, 'Delete']);
+   
+    // Crops Ex and Im
+    Route::get('/import/crop', [CropController::class, 'ImportCrop'])->name('import.crop');
+    Route::get('/crop/export', [CropController::class, 'CropExport'])->name('crop.export');
+    Route::post('/crop/import', [CropController::class, 'CropImport'])->name('crop.import');
+
+    Route::get('/bulan/crop', [CropController::class, 'BulanCrop'])->name('bulan.crop');

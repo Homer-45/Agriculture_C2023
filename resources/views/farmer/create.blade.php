@@ -40,17 +40,17 @@
                             </div>
                             <div class="form-group col-md-1">
                                 <label>Suffix:</label>
-                                <input type="text" class="form-control" name="suffix" placeholder="eg.Jr" onkeydown="return /[a-z ]/i.test(event.key)" required>
+                                <input type="text" class="form-control" name="suffix" placeholder="eg.Jr" onkeydown="return /[a-z ]/i.test(event.key)">
                             </div>
                             <div class="form-group col-md-2">
                                 <label class="">Sex:</label>
                                 <div class="row mt-2">
                                     <div class="form-check ml-4">
-                                    <input class="form-check-input" type="radio" name="sex" value="male">
+                                    <input class="form-check-input" type="radio" name="sex" value="male" require>
                                         <label class="form-check-label">Male</label>
                                     </div>
                                     <div class="form-check ml-4">
-                                    <input class="form-check-input" type="radio" name="sex" value="female">
+                                    <input class="form-check-input" type="radio" name="sex" value="female" required>
                                         <label class="form-check-label">Female</label>
                                     </div>
                                 </div>
@@ -67,7 +67,11 @@
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Barangay:</label>
-                                <input type="text" class="form-control" name="barangay">
+                                <select class="form-control" name="barangay_id">
+                                    @foreach($barangays as $brgy)
+                                    <option value="{{ $brgy->id }}">{{ $brgy->barangay_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group col-md-2" >
                                 <label>Municipality/City:</label>

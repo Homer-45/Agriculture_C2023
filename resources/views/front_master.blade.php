@@ -79,14 +79,14 @@
                 <!-- Sidebar -->
                 <div class="sidebar">
                     <!-- Sidebar user panel (optional) -->
-                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
                         <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
                         <a href="#" class="d-block">Alexander Pierce</a>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
@@ -124,11 +124,17 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('bulan.crop') }}" class="nav-link {{ Request::is('bulan/crop')? 'active': '' }}">
+                                    <i class="nav-icon fas fa-seedling"></i>
+                                    <p>Crop2</p>
+                                </a>
+                            </li>
+                            <!-- <li class="nav-item">
                                 <a href=" {{ route('calendar') }}" class="nav-link {{ Request::is('/calendar')? 'active': '' }}">
                                     <i class="nav-icon far fa-calendar-alt"></i>
                                     <p>Calendar</p>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a href="" class="nav-link">
                                     <i class="nav-icon fas fa-cog"></i>
@@ -142,12 +148,13 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="" class="nav-link">
                                     <i class="nav-icon fas fa-clipboard-list"></i>
                                     <p>Reports</p>
                                 </a>
-                            </li><br>
+                            </li> -->
+                            <br>
                             <li class="nav-item">
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf

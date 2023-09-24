@@ -13,18 +13,20 @@ return new class extends Migration
     {
         Schema::create('crops', function (Blueprint $table) {
             $table->id();
-            $table->integer('talong')->nullable();
-            $table->integer('balatong')->nullable();
-            $table->integer('okra')->nullable();
-            $table->integer('upo')->nullable();
-            $table->integer('sili')->nullable();
-            $table->integer('ampalaya')->nullable();
-            $table->integer('pechay')->nullable();
-            $table->integer('pipino')->nullable();
-            $table->integer('patola')->nullable();
-            $table->integer('tomato')->nullable();
-            $table->integer('kalabasa')->nullable();
-            $table->integer('mango')->nullable();
+            $table->string('talong')->nullable();
+            $table->string('balatong')->nullable();
+            $table->string('okra')->nullable();
+            $table->string('upo')->nullable();
+            $table->string('sili')->nullable();
+            $table->string('ampalaya')->nullable();
+            $table->string('pechay')->nullable();
+            $table->string('pipino')->nullable();
+            $table->string('patola')->nullable();
+            $table->string('tomato')->nullable();
+            $table->string('kalabasa')->nullable();
+            $table->string('mango')->nullable();
+
+            $table->foreignId('farmers_id')->constrained();
             $table->timestamps();
         });
     }

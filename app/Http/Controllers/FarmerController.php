@@ -4,19 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Farmer;
+use App\Models\Barangay;
 use Illuminate\Http\Request;
 use App\Exports\FarmerExport;
 use App\Imports\FarmerImport;
 use Maatwebsite\Excel\Facades\Excel;
+use DB;
 
 class FarmerController extends Controller
 {
    public function AllFarmer(){
-      $farmers = Farmer::latest()->get();
+      $farmers = Farmer::with('barangays')->get();
       return view('farmer.index', compact('farmers'));
    }
    public function AddFarmer(){
-      return view('farmer.create');
+    $barangays = Barangay::select(DB::raw("CONCAT(brgy_name) as barangay_name, id"))->get();
+      return view('farmer.create', compact('barangays'));
    }
    public function StoreFarmer(Request $request){
       Farmer::create([
@@ -28,7 +31,6 @@ class FarmerController extends Controller
          'sex'                      => $request->sex,
          'house'                    => $request->house,
          'street'                   => $request->street,
-         'barangay'                 => $request->barangay,
          'city'                     => $request->city,
          'province'                 => $request->province,
          'region'                   => $request->region,
@@ -40,7 +42,8 @@ class FarmerController extends Controller
          'spouse'                   => $request->spouse,
          'mothername'               => $request->mothername,
          'govID'                    => $request->govID,
-         'id_number'                => $request->id_number, 
+         'id_number'                => $request->id_number,
+         'barangay_id'              => $request->barangay_id, 
       ]);
       $notification = ([
           'message' =>'Successfully Added Farmer', 'Success',
@@ -117,6 +120,15 @@ class FarmerController extends Controller
     ]);
     
     return redirect()->back()->with($notification);
+  }
+
+  public function getDate(Request $request){
+    $farmers = DB::table('farmers')
+                ->join('barangays', 'farmers.barangay_id', '=', 'barangays.id')
+                ->select('farmers.*', 'barangays.brgy_name as barangay_name')
+                ->whereBetween('farmers.created_at', [$request->fdate, $request->sdate])
+                ->get();
+    return view('farmer.index', compact('farmers'));
   }
 
 

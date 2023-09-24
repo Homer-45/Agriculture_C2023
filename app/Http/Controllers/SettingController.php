@@ -9,13 +9,15 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Models\Barangay;
 use DB;
 
 class SettingController extends Controller
 {
     public function Account(){
-        $users = DB::table('users')->latest()->get();
-        return view('settings.account', compact('users'));
+        $users = User::with('barangays')->get();
+        $barangays = Barangay::select(DB::raw("CONCAT(brgy_name) as barangay_name, id"))->get();
+        return view('settings.account', compact('users', 'barangays'));
     }
     public function Calendar(){
         return view('calendars.index');
@@ -27,6 +29,7 @@ class SettingController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role' => ['required'],
+            'barangay_id' => ['required'],
         ]);
 
         $user = User::create([
@@ -35,13 +38,14 @@ class SettingController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,
+            'barangay_id' => $request->barangay_id,
         ]);
 
         $notification = ([
             'message' => 'User Created Successfully',
             'alert-type' => 'success',
         ]);
-        dd($user);
+        
         return redirect()->back()->with($notification);
     }
     public function Edit($id){
@@ -62,10 +66,27 @@ class SettingController extends Controller
         $user -> username = $request->username;
         $user -> email = $request->email;
         $user -> role = $request->role;
+        $user -> barangay_id = $request->barangay_id;
         $user -> update();
 
         $notification = ([
             'message' => 'User Successfully Updated',
+            'alert-type' => 'success',
+        ]);
+
+        return Redirect()->route('account')->with($notification);
+    }
+    public function ChangePassword(Request $request){
+        $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $update = User::find($request->id)->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        $notification = ([
+            'message' => 'Successfully Change Password',
             'alert-type' => 'success',
         ]);
 

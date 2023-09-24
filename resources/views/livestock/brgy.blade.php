@@ -29,6 +29,32 @@
                     <h3 class="card-title mt-2">List</h3>
                 </div>
                 <div class="card-body">
+                <form method="GET" action="{{ route('all.livestock') }}" class="remove">
+                        @csrf
+                        <div class="row">
+                            <div class="ml-2">
+                                <p>Filter Date By:</p>
+                            </div>
+                            <div class="col-sm-2 col-md-offset-2 mb-1">
+                                <input type="date" class="form-control form-control-sm" name="livestock_fdate" id="livestock_fdate" value="{{ request('livestock_fdate') }}" required>
+                            </div>
+                            <div>
+                                <h5>To</h5>
+                            </div>
+                            <div class="col-sm-2 col-md-offset-2 mb-1">
+                                <input type="date" class="form-control form-control-sm" name="livestock_sdate" id="livestock_sdate" value="{{ request('livestock_sdate') }}" required>
+                            </div>
+                            <div class="ml-1">
+                                <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+                            </div>
+                    </form>
+                            <div class="ml-2">
+                                <a href="{{ route('livestock.export', request()->all()) }}" class="btn btn-info btn-sm">Export</a>
+                            </div>
+                            <div class="ml-2">
+                                <a href="/all/livestock" class="btn btn-success btn-sm pull-right"><i class="fas fa-sync-alt"></i> Refresh</a>
+                            </div>
+                        </div>
                     <table id="example3" class="table table-bordered table-striped" style="font-size: 14px;">
                         <thead>
                             <tr>
@@ -69,9 +95,9 @@
                         </thead>
                         <tbody>
                             @php($i = 1)
-                            @foreach($livestocks as $livestock)
+                            @foreach($livestockData as $livestock)
                             <tr>
-                                <td>{{ $i++ }}. {{ $livestock->id }}</td>
+                                <td>{{ $i++ }}. {{$livestock->full_name}}</td>
                                 <td>{{$livestock->carabao}}</td>
                                 <td>{{$livestock->cattle}}</td>
                                 <td>{{$livestock->breeder}}</td>
@@ -103,9 +129,13 @@
                                                 <form method="POST" action="{{ url('livestock/update/' .$livestock->id) }}" class="needs-validation">
                                                     @csrf
                                                     <div class="modal-body">
-                                                        <div class="form-group col-md-7">
+                                                        <div class="form-group col-md-10">
                                                             <label>Name:</label>
-                                                            <input type="text" name="event_name" value="" class="form-control" id="validationServer" aria-describedby="validationServerFeedback" disabled>
+                                                            <select class="form-control col-md-6" name="farmers_id">
+                                                                @foreach($farmers as $farmer)
+                                                                <option value="{{ $farmer->id }}">{{ $farmer->full_name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                         <div class="row" style="display: flex; justify-content: center; align-items: center; ">
                                                             <div class="form-group col-md-2" >
@@ -216,7 +246,7 @@
                                 
                             </tr>
                             @endforeach
-                        </tbody>
+                        </tbody> 
                         <!-- <tfoot>
                             <tr>
                             <th>Rendering engine</th>
@@ -245,9 +275,13 @@
             <form method="POST" action="{{ route('submit-form') }}" class="needs-validation" onsubmit="btn.disabled = true; return true;">
                 @csrf
                 <div class="modal-body">
-                    <div class="form-group col-md-7">
+                    <div class="form-group col-md-10">
                         <label>Name:</label>
-                        <input type="text" name="event_name" value="" class="form-control" id="validationServer" aria-describedby="validationServerFeedback" disabled>
+                        <select class="form-control col-md-6" name="farmers_id">
+                            @foreach($farmers as $farmer)
+                            <option value="{{ $farmer->id }}">{{ $farmer->full_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="row" style="display: flex; justify-content: center; align-items: center; ">
                         <div class="form-group col-md-2" >

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->enum('role', ['admin', 'agent', 'user'])->default('user');
             $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->foreignId('barangay_id')->constrained();
             $table->rememberToken();
             $table->timestamps();
         });

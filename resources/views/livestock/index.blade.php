@@ -6,16 +6,6 @@
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-2 mb-3"><b>Livestock Information</b></h1>
-                <!-- buttons list -->
-                <nav>
-                    <ol>
-                        <a href="{{ route('add.livestock') }}"><button class="btn btn-success"><i class="nav-icon fas fa-plus"></i> Add List</button></a>
-                        &nbsp; &nbsp; &nbsp;
-                        <a href="{{ route('import.livestock') }}"><button class="btn btn-warning"> Import</button></a>
-                        &nbsp; &nbsp; &nbsp;
-                        <a href="{{ route('livestock.export') }}"><button class="btn btn-danger"> Export</button></a>
-                    </ol>
-                </nav>
             </div>
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -30,6 +20,34 @@
                     <h3 class="card-title mt-2">List Livestock and Poultry</h3>
                 </div>
                 <div class="card-body">
+                    <form method="GET" action="{{ route('bulan.livestock') }}" class="remove">
+                        @csrf
+                        <div class="row">
+                            <div class="ml-2">
+                                <p>Filter Date By:</p>
+                            </div>
+                            <div class="col-sm-2 col-md-offset-2 mb-1">
+                                <input type="date" class="form-control form-control-sm" name="fdate" id="fdate" value="{{ request('fdate') }}" required>
+                            </div>
+                            <div>
+                                <h5>To</h5>
+                            </div>
+                            <div class="col-sm-2 col-md-offset-2 mb-1">
+                                <input type="date" class="form-control form-control-sm" name="sdate" id="sdate" value="{{ request('sdate') }}" required>
+                            </div>
+                            <div class="ml-1">
+                                <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+                            </div>
+                    </form>
+                            <div class="ml-2">
+                                <a href="{{ route('livestock.export', request()->all()) }}" class="btn btn-info btn-sm">Export</a>
+                            </div>
+                            <div class="ml-2">
+                                <a href="/bulan/livestock" class="btn btn-success btn-sm pull-right"><i class="fas fa-sync-alt"></i> Refresh</a>
+                            </div>
+                        </div>
+                    
+                    
                     <table id="example3" class="table table-bordered table-striped" style="font-size: 14px;">
                         <thead>
                             <tr>
@@ -69,29 +87,28 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach ($livestockCounts as $livestockCount)
                             <tr>
-                                <td>{{ $carabaoCounts }}</td>
-                                <td>Internet Explorer Explorer 4.0</td>
-                                <td>Internet</td>
-                                <td>Win 95+</td>
-                                <td>4</td>
-                                <td>X</td>
-                                <td>Internet</td>
-                                <td>Win 95+</td>
-                                <td>4</td>
-                                <td>X</td>
-                                <td>Internet</td>
-                                <td>Win 95+</td>
-                                <td>4</td>
-                                <td>X</td>
-                                <td>Internet</td>
-                                <td>Win 95+</td>
-                                <td>4</td>
-                                <td>X</td>
-                                
+                                <td>#</td>
+                                <td>{{ $livestockCount->brgy_name }}</td>
+                                <td>{{ $livestockCount->carabao_sum }}</td>
+                                <td>{{ $livestockCount->cattle_sum }}</td>
+                                <td>{{ $livestockCount->breeder_sum }}</td>
+                                <td>{{ $livestockCount->fattener_sum }}</td>
+                                <td>{{ $livestockCount->goat_sum }}</td>
+                                <td>{{ $livestockCount->sheep_sum }}</td>
+                                <td>{{ $livestockCount->broiler_sum }}</td>
+                                <td>{{ $livestockCount->layer_sum }}</td>
+                                <td>{{ $livestockCount->native_sum }}</td>
+                                <td>{{ $livestockCount->muscovy_sum }}</td>
+                                <td>{{ $livestockCount->mallard_sum }}</td>
+                                <td>{{ $livestockCount->turkey_sum }}</td>
+                                <td>{{ $livestockCount->geese_sum }}</td>
+                                <td>{{ $livestockCount->quail_sum }}</td>
+                                <td>{{ $livestockCount->dog_sum }}</td>
+                                <td>{{ $livestockCount->horse_sum }}</td>
                             </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

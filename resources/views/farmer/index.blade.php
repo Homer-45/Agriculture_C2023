@@ -31,6 +31,30 @@
                     <h3 class="card-title mt-2">List</h3>
                 </div>
                 <div class="card-body">
+                    <form method="POST" action="/select/farmer" class="remove">
+                        {{ csrf_field() }}
+                        <div class="row">
+                        <!-- style="margin-bottom:-40px;" -->
+                            <div class="ml-2">
+                            <p>Filter Date By: </p> 
+                            </div>
+                            <div class="col-sm-2 col-md-offset-2 mb-1">
+                            <input type="date" class="form-control form-control-sm" name="fdate" required>
+                            </div>
+                            <div>
+                            <h5>To</h5>
+                            </div>
+                            <div class="col-sm-2 col-md-offset-2 mb-1">
+                            <input type="date" class="form-control form-control-sm" name="sdate" required>
+                            </div>
+                            <div class="ml-1">
+                            <input type="submit" value="Filter" class="btn btn-sm btn-primary">
+                            </div>
+                            <div class="ml-2">
+                            <a href="/all/farmer" class="btn btn-success btn-sm pull-right"><i class="fas fa-sync-alt"></i> Refresh</a>
+                            </div>
+                        </div>
+                    </form>
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -47,8 +71,8 @@
                             @foreach ($farmers as $farmer)
                             <tr>
                                 <td>{{ $i++ }}. {{$farmer->first_name}} {{$farmer->middle_name}} {{$farmer->last_name}}</td>
-                                <td>{{$farmer->reference_number}}</td>
-                                <td>{{$farmer->barangay}}</td>
+                                <td>{{$farmer->created_at}}</td>
+                                <td>{{$farmer->barangay_name}}</td>
                                 <td>{{$farmer->mobile}}</td>
                                 <td>{{$farmer->date_birth}}</td>
                                 <td>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Farmer;
 
 class Crop extends Model
 {
@@ -23,5 +24,10 @@ class Crop extends Model
         'tomato',
         'kalabasa',
         'mango',
+        'farmers_id',
     ];
+
+    public function farmers(){
+        return $this->belongsTo(Farmer::class);
+    }
 }
