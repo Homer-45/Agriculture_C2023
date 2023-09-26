@@ -194,6 +194,8 @@ class LivestockController extends Controller
     }
 
     public function LivestockExport(Request $request){
+        $livestock_fdate = $request->input('livestock_fdate');
+        $livestock_sdate = $request->input('livestock_sdate');
         $livestockData = DB::table('livestocks')
                     ->join('farmers', 'livestocks.farmers_id', '=', 'farmers.id')
                     ->join('barangays', 'farmers.barangay_id', '=', 'barangays.id')
@@ -273,7 +275,7 @@ class LivestockController extends Controller
                         $livestockQuery = $livestockExport->get();
                         
 
-        return Excel::download(new LivestockExport($livestockQuery, $livestockBrgy), 'livestock.xlsx');
+        return Excel::download(new LivestockExport($livestockQuery, $livestockBrgy,  $fdate, $sdate, $livestock_fdate, $livestock_sdate), 'livestock.xlsx');
     }
 
     public function LivestockImport(Request $request){

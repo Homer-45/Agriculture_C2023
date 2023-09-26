@@ -24,21 +24,35 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth'])->group(function(){
 
-Route::middleware(['auth', 'role:admin'])->group(function(){
+    // Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::get('/agriculture/dashboard', [AdminController::class, 'AgricultureDashboard'])->name('agriculture.dashboard');
 
-    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::post('/submit-form', [LivestockController::class, 'Submit'])->name('submit-form');
+    Route::get('/calendar', [SettingController::class, 'Calendar'])->name('calendar');
+    // User or Barangay
+
+    Route::get('/account', [SettingController::class, 'Account'])->name('account');
+    Route::post('/store/user', [SettingController::class, 'StoreUser'])->name('store.user');
+    Route::get('/edit/{id}', [SettingController::class, 'Edit']);
+    Route::post('/update/{id}', [SettingController::class, 'Update'])->name('update.user');
+    Route::get('/delete/{id}', [SettingController::class, 'Delete']);
+    Route::get('/forgot/{id}', [SettingController::class, 'ForgotPassword']);
+    Route::post('/change/{id}', [SettingController::class, 'ChangePassword']);
+
+    Route::get('/prof/{id}', [AdminController::class, 'AccountUser'])->name('prof'); //User
+
     // Farmer
     Route::get('/all/farmer', [FarmerController::class, 'AllFarmer'])->name('all.farmer');
     Route::get('/add/farmer', [FarmerController::class, 'AddFarmer'])->name('add.farmer');
@@ -52,6 +66,7 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/export', [FarmerController::class, 'Export'])->name('export');
     Route::post('/import', [FarmerController::class, 'Import'])->name('import');
 
+    
     // Livestock
     Route::get('/all/livestock', [LivestockController::class, 'AllLivestock'])->name('all.livestock');
     Route::get('/bulan/livestock', [LivestockController::class, 'BulanLivestock'])->name('bulan.livestock');
@@ -64,34 +79,8 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/livestock/export', [LivestockController::class, 'LivestockExport'])->name('livestock.export');
     Route::post('/livestock/import', [LivestockController::class, 'LivestockImport'])->name('livestock.import');
 
-    // Crops
-    
-
-
-}); //Admin Group middleware
-
-Route::middleware(['auth', 'role:user'])->group(function(){
-
-    
-}); //Agent Group middleware
-
-
-Route::get('/calendar', [SettingController::class, 'Calendar'])->name('calendar');
-// User or Barangay
-Route::post('/submit-form', [LivestockController::class, 'Submit'])->name('submit-form');
-
-Route::get('/account', [SettingController::class, 'Account'])->name('account');
-Route::post('/store/user', [SettingController::class, 'StoreUser'])->name('store.user');
-Route::get('/edit/{id}', [SettingController::class, 'Edit']);
-Route::post('/update/{id}', [SettingController::class, 'Update']);
-Route::get('/delete/{id}', [SettingController::class, 'Delete']);
-
-Route::get('/forgot/{id}', [SettingController::class, 'ForgotPassword']);
-Route::post('/change/{id}', [SettingController::class, 'ChangePassword']);
-
-
-
-Route::get('/all/crop', [CropController::class, 'AllCrop'])->name('all.crop');
+    // Crop
+    Route::get('/all/crop', [CropController::class, 'AllCrop'])->name('all.crop');
     Route::get('/add/crop', [CropController::class, 'AddCrop'])->name('add.crop');
     Route::post('/store/crop', [CropController::class, 'StoreCrop'])->name('store.crop');
     Route::get('/crop/edit/{id}', [CropController::class, 'EditCrop']);
@@ -104,3 +93,6 @@ Route::get('/all/crop', [CropController::class, 'AllCrop'])->name('all.crop');
     Route::post('/crop/import', [CropController::class, 'CropImport'])->name('crop.import');
 
     Route::get('/bulan/crop', [CropController::class, 'BulanCrop'])->name('bulan.crop');
+});
+
+require __DIR__.'/auth.php';

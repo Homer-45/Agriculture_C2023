@@ -43,7 +43,6 @@ class Farmer extends Model
     public function barangays(){
         return $this->belongsTo(Barangay::class, 'barangay_id');
     }
-    // cgpt
     public function getBarangayNameAttribute()
     {
         return $this->barangays->brgy_name;

@@ -100,18 +100,20 @@ class FarmerController extends Controller
       return view('farmer.import_farmer');
   }
 
-  public function Export(){
-      return Excel::download(new FarmerExport, 'farmer.xlsx');
-  }
+  public function Export(Request $request){
+
+    $fdate = $request->input('fdate');
+    $sdate = $request->input('sdate');
+
+    return Excel::download(new FarmerExport($fdate, $sdate), 'farmer.xlsx');
+}
 
   public function Import(Request $request){
 
     $file = $request->file('import_file', 'XLSX');
     if ($file) {
-        // File is not null, proceed with import
         Excel::import(new FarmerImport, $file);
     } else {
-        // Handle the case where the file is null
         dd($file, 'Back to previous page');
     }
     $notification = ([
@@ -123,11 +125,15 @@ class FarmerController extends Controller
   }
 
   public function getDate(Request $request){
+    $fdate = $request->input('fdate');
+    $sdate = $request->input('sdate');
+
     $farmers = DB::table('farmers')
                 ->join('barangays', 'farmers.barangay_id', '=', 'barangays.id')
                 ->select('farmers.*', 'barangays.brgy_name as barangay_name')
-                ->whereBetween('farmers.created_at', [$request->fdate, $request->sdate])
+                ->whereBetween('farmers.created_at', [$fdate, $sdate])
                 ->get();
+
     return view('farmer.index', compact('farmers'));
   }
 

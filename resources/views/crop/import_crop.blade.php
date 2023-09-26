@@ -7,11 +7,11 @@
                 <h1 class="m-2">Crop</h1>
             </div>
         </div>
-        <nav>
+        <!-- <nav>
             <ol>
                 <a href="{{ route('crop.export') }}"><button class="btn btn-danger"> Download Xlsx</button></a>
             </ol>
-        </nav>
+        </nav> -->
         <div class="col-md-4 ml-3">
             <!-- general form elements -->
             <div class="card card-success">

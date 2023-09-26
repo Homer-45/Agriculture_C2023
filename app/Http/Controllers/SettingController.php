@@ -58,7 +58,6 @@ class SettingController extends Controller
             'name' => 'required|string',
             'username' => 'required|string|unique:users,username,'.$request->id,
             'email' => 'required|email|string|unique:users,email,'.$request->id,
-            'role' => 'required',
         ]);
 
         $user = User::find($request->id);
@@ -73,7 +72,7 @@ class SettingController extends Controller
             'message' => 'User Successfully Updated',
             'alert-type' => 'success',
         ]);
-
+        
         return Redirect()->route('account')->with($notification);
     }
     public function ChangePassword(Request $request){

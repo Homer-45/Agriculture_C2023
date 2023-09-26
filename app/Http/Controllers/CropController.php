@@ -162,6 +162,8 @@ class CropController extends Controller
     }
 
     public function CropExport(Request $request){
+        $crop_fdate = $request->input('crop_fdate');
+        $crop_sdate = $request->input('crop_sdate');
         $cropData = DB::table('crops')
                     ->join('farmers', 'crops.farmers_id', '=', 'farmers.id')
                     ->join('barangays', 'farmers.barangay_id', '=', 'barangays.id')
@@ -228,7 +230,7 @@ class CropController extends Controller
                         $cropExport->whereBetween('crops.created_at', [$fdate, $sdate]);
                     }
                     $cropQuery = $cropExport->get();
-        return Excel::download(new CropExport($cropQuery, $cropsBrgy), 'crops.xlsx');
+        return Excel::download(new CropExport($cropQuery, $cropsBrgy, $fdate, $sdate, $crop_fdate, $crop_sdate), 'crops.xlsx');
     }
 
     public function CropImport(Request $request){

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Agriculture | Dashboard</title>
   <!-- fullCalendar -->
-  <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/main.css')}}">
+  <!-- <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/main.css')}}"> -->
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -13,11 +13,11 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="{{ asset ('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset ('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}"> -->
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset ('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="{{ asset ('plugins/jqvmap/jqvmap.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset ('plugins/jqvmap/jqvmap.min.css') }}"> -->
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset ('dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
@@ -45,7 +45,7 @@
                 <a class="nav-link text-white" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="/admin/dashboard" class="nav-link text-white"><strong>Home</strong></a>
+                <a href="/agriculture/dashboard" class="nav-link text-white"><strong>Home</strong></a>
             </li>
         </ul>
         <!-- Right navbar links -->
@@ -97,38 +97,36 @@
                                     <p>Farmer</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="nav-icon fas fa-hippo"></i>
-                                    <p>Livestock</p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href=" {{ route('all.livestock') }}" class="nav-link ml-4 {{ Request::is('all/livestock')? 'active': '' }}">
-                                            <p>Poultry Population Inventory</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href=" {{ route('bulan.livestock') }}" class="nav-link ml-4 {{ Request::is('bulan/livestock')? 'active': '' }}">
-                                            <p>Poultry Population</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('all.crop') }}" class="nav-link {{ Request::is('all/crop')? 'active': '' }}">
-                                    <i class="nav-icon fas fa-seedling"></i>
-                                    <p>Crops</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('bulan.crop') }}" class="nav-link {{ Request::is('bulan/crop')? 'active': '' }}">
-                                    <i class="nav-icon fas fa-seedling"></i>
-                                    <p>Crop2</p>
-                                </a>
-                            </li>
+                            @if (Auth::check() && Auth::user()->role === 'user')
+                                <li class="nav-item">
+                                    <a href=" {{ route('all.livestock') }}" class="nav-link {{ Request::is('all/livestock')? 'active': '' }}">
+                                        <i class="nav-icon fas fa-hippo"></i>
+                                        <p>Livestock</p>
+                                    </a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a href=" {{ route('bulan.livestock') }}" class="nav-link {{ Request::is('bulan/livestock')? 'active': '' }}">
+                                        <i class="nav-icon fas fa-hippo"></i>
+                                        <p>Livestock</p>
+                                    </a>
+                                </li>
+                            @endif
+                            @if (Auth::check() && Auth::user()->role === 'user')
+                                <li class="nav-item">
+                                    <a href="{{ route('all.crop') }}" class="nav-link {{ Request::is('all/crop')? 'active': '' }}">
+                                        <i class="nav-icon fas fa-seedling"></i>
+                                        <p>Crops</p>
+                                    </a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a href="{{ route('bulan.crop') }}" class="nav-link {{ Request::is('bulan/crop')? 'active': '' }}">
+                                        <i class="nav-icon fas fa-seedling"></i>
+                                        <p>Crops</p>
+                                    </a>
+                                </li>
+                            @endif
                             <!-- <li class="nav-item">
                                 <a href=" {{ route('calendar') }}" class="nav-link {{ Request::is('/calendar')? 'active': '' }}">
                                     <i class="nav-icon far fa-calendar-alt"></i>
@@ -143,7 +141,7 @@
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <a href=" {{ route('account') }}" class="nav-link ml-4 {{ Request::is('/account')? 'active': '' }}">
-                                            <p>Account</p>
+                                            <p>Accounts</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -208,8 +206,8 @@
 <!-- Sparkline -->
 <script src="{{ asset ('plugins/sparklines/sparkline.js') }}"></script>
 <!-- JQVMap -->
-<script src="{{ asset ('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-<script src="{{ asset ('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+<!-- <script src="{{ asset ('plugins/jqvmap/jquery.vmap.min.js') }}"></script> -->
+<!-- <script src="{{ asset ('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> -->
 <!-- jQuery Knob Chart -->
 <script src="{{ asset ('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
@@ -225,7 +223,7 @@
 <script src="{{ asset ('dist/js/adminlte.js') }}"></script>
 <script src="{{ asset('plugins/toastr/toastr.min.js')}}"></script>
 <script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js')}}"></script>
-<script src="{{ asset('plugins/fullcalendar/main.js') }}"></script>
+<!-- <script src="{{ asset('plugins/fullcalendar/main.js') }}"></script> -->
 <!-- Datatables -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
@@ -234,12 +232,12 @@
 <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{ asset('plugins/jszip/jszip.min.js')}}"></script>
-<script src="{{ asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
+<!-- <script src="{{ asset('plugins/jszip/jszip.min.js')}}"></script> -->
+<!-- <script src="{{ asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
 <script src="{{ asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script> -->
 <script>
     @if(Session::has('message'))
         var type = "{{ Session::get('alert-type', 'info') }}"
